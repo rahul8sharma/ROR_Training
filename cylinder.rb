@@ -5,7 +5,7 @@ class Cylinder
     @radius = 10
   end
   def volume(height)
-    PIA * @radius * 2 * height
+    PIA * @radius * @radius * height
   end
 end
 

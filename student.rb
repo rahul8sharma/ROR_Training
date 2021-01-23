@@ -2,10 +2,14 @@ class Student
   @@students = []
 
   def add(name, roll_number, marks)
+    # There is no use of below formula for now as we are having single marks
+    # but when we have a more marks then it will be useful for us.
+    percentage = (marks * 100) / 100
     @@students << {
       name: name,
       roll_number: roll_number,
-      marks: marks
+      marks: marks,
+      percentage: percentage
     }
   end
 

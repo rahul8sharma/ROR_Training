@@ -1,6 +1,6 @@
 # Create a custom DivisionError ruby class and raise the exception for this class while dividing a number with 0
 
-class DivisionError < StandardError
+class DivisionError < ZeroDivisionError
 
   # Override the message method
   def message

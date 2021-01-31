@@ -49,9 +49,16 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
-    @comment.destroy
+    # We can also use the authorization manage below feature
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      @notice = "Comment was successfully destroyed."
+    else
+      @notice = "Your are not authorize to delete this comment"
+    end
+
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to comments_url, notice: @notice }
       format.json { head :no_content }
     end
   end

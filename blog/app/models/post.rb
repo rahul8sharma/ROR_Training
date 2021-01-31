@@ -1,11 +1,14 @@
 class Post < ApplicationRecord
+  include WordCount
+  include BadWord
+
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :tags, dependent: :destroy
 
   enum state: [:draft, :published, :archived]
 
-  validates :title, :description, :state, presence: true
+  validates :title, :description, :state, :word_count, presence: true
   validates :description, length: { within: 50..200 }
 
   after_validation :post_have_single_draft_state_record?

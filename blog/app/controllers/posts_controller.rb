@@ -19,6 +19,14 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def activate
+    @post.published!
+  end
+
+  def archive
+    @post.archived!
+  end
+
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
@@ -49,13 +57,14 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    # We can also use the autherization manage below feature
+    # We can also use the authorization manage below feature
     if @post.user_id == current_user.id
       @post.destroy
       @notice = "Post was successfully destroyed."
     else
       @notice = "Your are not authorize to delete this post"
     end
+
     respond_to do |format|
       format.html { redirect_to posts_url, notice: @notice }
       format.json { head :no_content }

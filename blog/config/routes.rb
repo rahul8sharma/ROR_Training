@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :tags
-  resources :comments
+  resources :comments do
+    get 'activate'
+    get 'archive'
+  end
   resources :posts
   devise_for :users
 

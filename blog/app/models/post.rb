@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   include WordCount
   include BadWord
   extend StringOperations
+  include ClassEvalModule
 
   belongs_to :user
   has_many :comments, dependent: :destroy
